@@ -1,0 +1,17 @@
+{
+  "name": "Grab Data Exporter",
+  "description": "Grab Data Exporter via Gmail Invoices",
+  "repository": "https://github.com/mufid-experiments/grab-data-exporter",
+  "env": {
+    "GOOGLE_CLIENT_ID": {
+      "description": "Google Client ID",
+    },
+    "GOOGLE_CLIENT_SECRET": {
+      "description": "Google Client Secret",
+    },
+    "RAILS_ENV": "production",
+    "RACK_ENV": "production",
+    "RAILS_SERVE_STATIC_FILES": "true"
+  },
+  "keywords": ["grab", "data exporter"]
+}
