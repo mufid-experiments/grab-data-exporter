@@ -1,0 +1,4 @@
+- content_for :content do 
+  %body.antialiased.border-top-wide.border-primary.d-flex.flex-column
+  = yield 
+= render template: "layouts/application"

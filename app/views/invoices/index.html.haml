@@ -1,0 +1,44 @@
+%body.antialiased
+  - flash.each do |key, value|
+    %div{class:"alert alert-#{key}", role: 'alert'}
+      %h4.alert-title
+        = value
+  .page
+    .content
+      .container-xl
+        .page-header.d-print-none
+          .row.align-items-center
+            .col
+              %h2.page-title
+                All Invoices
+            .col-auto.ms-auto.d-print-none
+              .d-flex
+                = link_to "Refresh", '/invoices/refresh', method: :post, class: "btn btn-primary"
+        .row.row-cards
+          .col-12
+            .card
+              .table-responsive
+                %table.table.table-vceneter.card-table
+                  %thead
+                    %tr
+                      %th Waktu
+                      %th Kode Booking
+                      %th Pesan dari
+                      %th Pengemudi
+                      %th Biaya
+                  %tbody
+                    - @invoices.each do |invoice|
+                      %tr
+                        %td= l invoice.pick_up_at, format: :long
+                        %td= invoice.booking_code
+                        %td= invoice.pick_up_location
+                        %td
+                          = invoice.driver_name
+                          - if invoice.past_driver_invoices > 1
+                            = link_to invoice.past_driver_invoices, invoices_url(driver_name: invoice.driver_name), class: 'badge bg-primary ms-auto'
+                        %td= number_to_currency(invoice.total_price, unit: "Rp")
+              .card-footer.d-flex.align-items-center
+                %p.m-0.text-muted
+                  = page_entries_info @invoices, entry_name: 'invoices'
+                = paginate @invoices, remote: false
+
